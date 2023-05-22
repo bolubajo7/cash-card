@@ -1,6 +1,5 @@
 package com.example.cashcard;
 
-import com.example.domain.CashCardRecord;
 import com.example.domain.CashCashRecordWithoutId;
 import com.example.entity.CashCard;
 import com.example.service.CashCardService;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cashcards")
+@RequestMapping("/v1/cashcards")
 public class CashCardController {
 
     private final CashCardService cashCardService;
