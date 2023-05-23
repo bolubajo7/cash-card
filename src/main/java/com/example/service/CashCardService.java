@@ -3,7 +3,10 @@ package com.example.service;
 import com.example.data.CashCardRepository;
 import com.example.domain.CashCashRecordWithoutId;
 import com.example.entity.CashCard;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpStatusCodeException;
 
 import java.util.List;
 import java.util.Objects;
@@ -49,8 +52,8 @@ public class CashCardService {
     }
 }
 
-// Build data layer to return from an in-memory db or actual db (postgressSQL, mongoDb, h2) use relational dbm
-// Set up cash card repository
+// Build data layer to return from an in-memory db or actual db (postgressSQL, mongoDb, h2) use relational dbm DONE
+// Set up cash card repository DONE
 // Write test cases both positive and negative scenarios
 // Think of all the exceptions that the service could return. Error codes in case of an error e.g cc001
 // error codes that would be exposed by my service
