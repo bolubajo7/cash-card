@@ -3,10 +3,7 @@ package com.example.service;
 import com.example.data.CashCardRepository;
 import com.example.domain.CashCashRecordWithoutId;
 import com.example.entity.CashCard;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpStatusCodeException;
 
 import java.util.List;
 import java.util.Objects;

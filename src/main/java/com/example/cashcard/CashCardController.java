@@ -20,7 +20,6 @@ public class CashCardController {
         this.cashCardService = cashCardService;
     }
 
-
     @GetMapping("/{requestId}")
     public ResponseEntity<CashCard> findById(@PathVariable Long requestId) {
         try {
