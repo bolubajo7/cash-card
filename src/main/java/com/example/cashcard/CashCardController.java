@@ -2,22 +2,20 @@ package com.example.cashcard;
 
 import com.example.domain.CashCashRecordWithoutId;
 import com.example.entity.CashCard;
+import com.example.exceptions.CashCardException;
 import com.example.service.CashCardService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/v1/cashcards")
+@RequestMapping(value = "/v1/cashcards"
+//        consumes = MediaType.APPLICATION_JSON_VALUE,
+//        produces = MediaType.APPLICATION_JSON_VALUE
+)
 public class CashCardController {
 
     private final CashCardService cashCardService;
@@ -27,13 +25,10 @@ public class CashCardController {
     }
 
     @GetMapping("/{requestId}")
-    public ResponseEntity<CashCard> findById(@PathVariable Long requestId) {
-        try {
+    @ExceptionHandler(CashCardException.class)
+    public ResponseEntity<Object> findById(@PathVariable Long requestId) {
             var response = cashCardService.findById(requestId);
             return ResponseEntity.status(HttpStatus.OK).body(response);
-        } catch (NoSuchElementException exception) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
     }
 
     @GetMapping

@@ -2,7 +2,9 @@ package com.example.service;
 
 import com.example.data.CashCardRepository;
 import com.example.domain.CashCashRecordWithoutId;
+import com.example.domain.ErrorCode;
 import com.example.entity.CashCard;
+import com.example.exceptions.CashCardException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +25,12 @@ public class CashCardService {
     }
 
     public CashCard findById(Long id) {
-        return cashCardRepository.findById(id).orElseThrow();
+        try {
+            return cashCardRepository.findById(id).get();
+        } catch (Exception ex) {
+            System.out.println(ex);
+            throw  new CashCardException(ErrorCode.CC_002, "Not found!");
+        }
     }
 
     public Long saveCashCard(CashCashRecordWithoutId amount) {
