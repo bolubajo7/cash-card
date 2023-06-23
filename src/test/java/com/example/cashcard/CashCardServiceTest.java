@@ -1,13 +1,15 @@
 package com.example.cashcard;
 
+import com.example.config.S3Config;
 import com.example.data.CashCardRepository;
 import com.example.domain.CashCashRecordWithoutId;
 import com.example.entity.CashCard;
 import com.example.service.CashCardService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +18,17 @@ import java.util.Optional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-
-
-@WebMvcTest(CashCardService.class)
+@ExtendWith(SpringExtension.class)
 class CashCardServiceTest {
 
-    @Autowired
-    private  CashCardService cashCardService;
+    @Mock
+    S3Config s3Config;
 
-    @MockBean
-    private CashCardRepository cashCardRepository;
+    @Mock
+    CashCardRepository cashCardRepository;
+
+    @InjectMocks
+    CashCardService cashCardService;
 
     @Test
     public void when_find_all_it_should_return_a_list_of_cash_cards() {

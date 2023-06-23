@@ -37,8 +37,17 @@ dependencies {
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 	runtimeOnly 'com.h2database:h2'
 
+	implementation platform('software.amazon.awssdk:bom:2.20.56')
+	implementation 'software.amazon.awssdk:s3:'
+
 	implementation 'org.springframework.data:spring-data-jdbc'
 	testImplementation 'com.h2database:h2'
+
+	compileOnly 'org.projectlombok:lombok:1.18.28'
+	annotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+	testCompileOnly 'org.projectlombok:lombok:1.18.28'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
 }
 
 tasks.named('test') {
